@@ -39,7 +39,7 @@ server:
         mountPath: /
         services:
           - urlPath: /northwind/northwind.svc
-            metadataPath: ./webapp/localService/mainService/metadata.xml
-            mockdataPath: ./webapp/localService/mainService/data
+            metadataPath: ./webapp/localService/metadata.xml
+            mockdataPath: ./webapp/localService/data
             generateMockData: true
         annotations: []

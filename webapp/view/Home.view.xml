@@ -1,6 +1,134 @@
-<mvc:View controllerName="com.bootcamp.sapui5.tpfinalfiori.controller.Home"
+<mvc:View
+    controllerName="com.bootcamp.sapui5.tpfinalfiori.controller.Home"
+    xmlns:t="sap.ui.table"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    xmlns:c="sap.ui.core"
+    xmlns="sap.m"
+    height="100%"
+>
+    <Page
+        id="page"
+        showHeader="false"
+        enableScrolling="false"
+        class="sapUiContentPadding"
+    >
+        <content>
+            <t:Table
+                id="idSuppliersTable"
+                rows="{Suppliers>/}"
+                rowSelectionChange="onRowSelect"
+                selectionMode="Single"
+                selectionBehavior="RowOnly"
+            >
+                <t:extension>
+                    <HBox class="sapUiSmallMarginBottom">
+                        <items>
+                            <c:Icon
+                                src="sap-icon://supplier"
+                                alt="{i18n>description}"
+                                size="1.40rem"
+                            />
+                            <Title
+                                text="{i18n>titleTable}"
+                                titleStyle="H3"
+                                class="sapUiTinyMarginBeginEnd"
+                            />
+                        </items>
+                    </HBox>
+
+                    <OverflowToolbar
+                        style="Clear"
+                        class="sapUiSmallMarginBottom"
+                    >
+                        <Title
+                            id="title"
+                            text="{i18n>description}"
+                        />
+                        <ToolbarSpacer />
+                        <SearchField
+                            placeholder="{i18n>placeholder}"
+                            value="{LocalDataModel>/valueSearch}"
+                            liveChange="handleTxtFilter"
+                            width="19rem"
+                        />
+                    </OverflowToolbar>
+                </t:extension>
+                <t:columns>
+                    <t:Column
+                        width="7em"
+                        autoResizable="true"
+                        hAlign="Center"
+                    >
+                        <Title text="{i18n>supplierID}" />
+                        <t:template>
+                            <Text
+                                text="{Suppliers>SupplierID}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+                    <t:Column
+                        width="14em"
+                        autoResizable="true"
+                    >
+                        <Title text="{i18n>companyName}" />
+                        <t:template>
+                            <Text
+                                text="{Suppliers>CompanyName}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+                    <t:Column
+                        width="12em"
+                        autoResizable="true"
+                    >
+                        <Title text="{i18n>contactName}" />
+                        <t:template>
+                            <Text
+                                text="{Suppliers>ContactName}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+                    <t:Column
+                        width="12em"
+                        autoResizable="true"
+                    >
+                        <Title text="{i18n>contactTitle}" />
+                        <t:template>
+                            <Text
+                                text="{Suppliers>ContactTitle}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+                    <t:Column
+                        width="10em"
+                        autoResizable="true"
+                    >
+                        <Title text="{i18n>textCity}" />
+                        <t:template>
+                            <Text
+                                text="{Suppliers>City}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+                    <t:Column
+                        width="10em"
+                        autoResizable="true"
+                    >
+                        <Title text="{i18n>textPhone}" />
+                        <t:template>
+                            <Text
+                                text="{Suppliers>Phone}"
+                                wrapping="false"
+                            />
+                        </t:template>
+                    </t:Column>
+                </t:columns>
+            </t:Table>
+        </content>
     </Page>
 </mvc:View>

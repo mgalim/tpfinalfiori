@@ -1,0 +1,10 @@
+<mvc:View
+    controllerName="com.bootcamp.sapui5.tpfinalfiori.controller.Detail"
+    displayBlock="true"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+>
+    <Page id="detail">
+        <Title text="Detail" />
+    </Page>
+</mvc:View>
