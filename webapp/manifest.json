@@ -96,7 +96,7 @@
         },
         {
           "name": "detail",
-          "pattern": "detail/{supplierId}",
+          "pattern": "detail/{SupplierID}",
           "target": ["TargetHome", "detail"]
         }
       ],

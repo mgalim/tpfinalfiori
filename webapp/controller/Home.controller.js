@@ -22,7 +22,7 @@ sap.ui.define(
           await HomeHelper.setSupplierModel(this, oData[0].results);
         },
 
-        onhandleTxtFilter: function () {
+        handleTxtFilter: function () {
           let aFilters = [];
           let oBinding = this.oTable.getBinding("rows");
           let oModel = this.getOwnerComponent().getModel("LocalDataModel");
@@ -53,7 +53,7 @@ sap.ui.define(
           let aData = this.oTable.getContextByIndex(iIndex).getObject();
 
           this.oRouter.navTo("detail", {
-            supplierId: aData.SupplierID,
+            SupplierID: aData.SupplierID,
           });
         },
 

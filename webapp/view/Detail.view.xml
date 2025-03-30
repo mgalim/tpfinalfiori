@@ -1,14 +1,138 @@
 <mvc:View
     controllerName="com.bootcamp.sapui5.tpfinalfiori.controller.Detail"
-    displayBlock="true"
     xmlns:mvc="sap.ui.core.mvc"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:c="sap.ui.core"
     xmlns="sap.m"
+    height="100%"
 >
     <Page
         id="detail"
         showHeader="false"
         class="sapUiContentPadding"
     >
-        <Title text="Detail" />
+        <HBox
+            class="sapUiSmallMarginBottom"
+            justifyContent="Center"
+        >
+            <items>
+                <c:Icon
+                    src="sap-icon://product"
+                    alt="{i18n>descriptionDetail}"
+                    size="1.40rem"
+                />
+                <Title
+                    text="{i18n>descriptionDetail}"
+                    titleStyle="H3"
+                    class="sapUiTinyMarginBeginEnd"
+                />
+            </items>
+        </HBox>
+        <VBox class="sapUiSmallMargin">
+            <f:SimpleForm
+                editable="false"
+                layout="ResponsiveGridLayout"
+                title="{i18n>detailForm}"
+                labelSpanXL="2"
+                labelSpanL="3"
+                labelSpanM="4"
+                labelSpanS="12"
+                adjustLabelSpan="false"
+                emptySpanXL="0"
+                emptySpanL="0"
+                emptySpanM="0"
+                emptySpanS="0"
+                columnsXL="2"
+                columnsL="2"
+                columnsM="2"
+                singleContainerFullSize="false"
+            >
+                <f:content>
+                    <c:Title text="{i18n>information}" />
+
+                    <Label text="{i18n>companyName}" />
+                    <Text text="{CompanyName}" />
+
+                    <Label text="{i18n>contactName}" />
+                    <Text text="{ContactName}" />
+
+                    <Label text="{i18n>contactTitle}" />
+                    <Text text="{ContactTitle}" />
+
+                    <Label text="{i18n>phone}" />
+                    <Text text="{Phone}" />
+
+                    <c:Title text="{i18n>location}" />
+
+                    <Label text="{i18n>country}" />
+                    <Text text="{Country}" />
+
+                    <Label text="{i18n>city}" />
+                    <Text text="{City}" />
+
+                    <Label text="{i18n>address}" />
+                    <Text text="{Address}" />
+
+                    <Label text="{i18n>postalCode}" />
+                    <Text text="{PostalCode}" />
+                </f:content>
+            </f:SimpleForm>
+
+            <Table
+                id="idProductsTable"
+                class="sapUiMediumMarginTop"
+                width="auto"
+                items="{path: 'Products'}"
+            >
+                <columns>
+                    <Column>
+                        <Text text="{i18n>product}" />
+                    </Column>
+                    <Column>
+                        <Text
+                            text="{i18n>unitsInStock}"
+                            textAlign="Center"
+                        />
+                    </Column>
+                    <Column>
+                        <Text text="{i18n>quantityPerUnit}" />
+                    </Column>
+                    <Column width="100px">
+                        <Text text="{i18n>categories}" />
+                    </Column>
+                    <Column hAlign="End">
+                        <Text text="{i18n>unitPrice}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem
+                        vAlign="Middle"
+                        type="Active"
+                        press="onItemPress"
+                    >
+                        <cells>
+                            <ObjectIdentifier
+                                title="{ProductID}"
+                                text="{ProductName}"
+                            />
+                            <ObjectNumber
+                                number="{UnitsInStock}"
+                                state="{= ${UnitsInStock} === 0 ? 'Error' : ${UnitsInStock} > 15 ? 'Success' : 'Warning' }"
+                            />
+                            <Text text="{QuantityPerUnit}" />
+                            <Text text="{Category/CategoryName}" />
+                            <ObjectNumber
+                                number="{
+                            parts:[{path:'UnitPrice'},{value:'{i18n>currency}'}],
+                            type: 'sap.ui.model.type.Currency',
+                            formatOptions: {showMeasure: false}
+                        }"
+                                unit="{i18n>currency}"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </VBox>
     </Page>
 </mvc:View>
