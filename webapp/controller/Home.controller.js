@@ -12,19 +12,21 @@ sap.ui.define(
       "com.bootcamp.sapui5.tpfinalfiori.controller.Home",
       {
         onInit() {
+          this.oTable = this.getView().byId("idSuppliersTable");
           this.oRouter = this.getOwnerComponent().getRouter();
           this.loadSuppliers();
         },
+
         loadSuppliers: async function (oFilter = []) {
           let oData = await HomeHelper.getDataSuppliers(oFilter);
           await HomeHelper.setSupplierModel(this, oData[0].results);
         },
-        handleTxtFilter: function () {
+
+        onhandleTxtFilter: function () {
           let aFilters = [];
-          let oTable = this.getView().byId("idSuppliersTable");
-          let oBinding = oTable.getBinding("rows");
-          var oModel = this.getOwnerComponent().getModel("LocalDataModel");
-          var sQuery = oModel.getProperty("/valueSearch");
+          let oBinding = this.oTable.getBinding("rows");
+          let oModel = this.getOwnerComponent().getModel("LocalDataModel");
+          let sQuery = oModel.getProperty("/valueSearch");
 
           if (sQuery) {
             let oFilterId = new Filter("SupplierID", FilterOperator.EQ, sQuery);
@@ -46,14 +48,32 @@ sap.ui.define(
         },
 
         onRowSelect: function (oEvent) {
-          let oTable = this.getView().byId("idSuppliersTable");
-          let iIndex = oTable.getSelectedIndex();
+          let iIndex = this.oTable.getSelectedIndex();
           if (iIndex === -1) return;
-
-          let aData = oTable.getContextByIndex(iIndex).getObject();
+          let aData = this.oTable.getContextByIndex(iIndex).getObject();
 
           this.oRouter.navTo("detail", {
             supplierId: aData.SupplierID,
+          });
+        },
+
+        sortColumn: function (sSortProperty) {
+          let oColumn = this.oTable
+            .getColumns()
+            .find((col) => col.getSortProperty() === sSortProperty);
+          let bDescending = !!oColumn.getSorted() && !oColumn.getSortOrder();
+
+          this.oTable.sort(
+            oColumn,
+            bDescending ? SortOrder.Descending : SortOrder.Ascending,
+            true
+          );
+        },
+
+        clearAllSortings: function () {
+          this.oTable.getBinding().sort(null);
+          this.oTable.getColumns().forEach((oColumn) => {
+            oColumn.setSorted(false);
           });
         },
       }

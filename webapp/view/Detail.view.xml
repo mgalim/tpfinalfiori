@@ -4,7 +4,11 @@
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
 >
-    <Page id="detail">
+    <Page
+        id="detail"
+        showHeader="false"
+        class="sapUiContentPadding"
+    >
         <Title text="Detail" />
     </Page>
 </mvc:View>

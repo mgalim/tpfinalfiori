@@ -29,7 +29,7 @@
                                 size="1.40rem"
                             />
                             <Title
-                                text="{i18n>titleTable}"
+                                text="{i18n>titlePortal}"
                                 titleStyle="H3"
                                 class="sapUiTinyMarginBeginEnd"
                             />
@@ -45,6 +45,12 @@
                             text="{i18n>description}"
                         />
                         <ToolbarSpacer />
+                        <Button
+                            icon="sap-icon://decline"
+                            tooltip="{i18n>clearSorting}"
+                            press="clearAllSortings"
+                        />
+                        <ToolbarSeparator />
                         <SearchField
                             placeholder="{i18n>placeholder}"
                             value="{LocalDataModel>/valueSearch}"
@@ -59,7 +65,7 @@
                         autoResizable="true"
                         hAlign="Center"
                     >
-                        <Title text="{i18n>supplierID}" />
+                        <Label text="{i18n>supplierID}" />
                         <t:template>
                             <Text
                                 text="{Suppliers>SupplierID}"
@@ -68,10 +74,11 @@
                         </t:template>
                     </t:Column>
                     <t:Column
-                        width="14em"
+                        width="15em"
                         autoResizable="true"
+                        sortProperty="CompanyName"
                     >
-                        <Title text="{i18n>companyName}" />
+                        <Label text="{i18n>companyName}" />
                         <t:template>
                             <Text
                                 text="{Suppliers>CompanyName}"
@@ -82,8 +89,9 @@
                     <t:Column
                         width="12em"
                         autoResizable="true"
+                        sortProperty="ContactName"
                     >
-                        <Title text="{i18n>contactName}" />
+                        <Label text="{i18n>contactName}" />
                         <t:template>
                             <Text
                                 text="{Suppliers>ContactName}"
@@ -94,8 +102,9 @@
                     <t:Column
                         width="12em"
                         autoResizable="true"
+                        sortProperty="ContactTitle"
                     >
-                        <Title text="{i18n>contactTitle}" />
+                        <Label text="{i18n>contactTitle}" />
                         <t:template>
                             <Text
                                 text="{Suppliers>ContactTitle}"
@@ -106,8 +115,9 @@
                     <t:Column
                         width="10em"
                         autoResizable="true"
+                        sortProperty="City"
                     >
-                        <Title text="{i18n>textCity}" />
+                        <Label text="{i18n>textCity}" />
                         <t:template>
                             <Text
                                 text="{Suppliers>City}"
@@ -119,7 +129,7 @@
                         width="10em"
                         autoResizable="true"
                     >
-                        <Title text="{i18n>textPhone}" />
+                        <Label text="{i18n>textPhone}" />
                         <t:template>
                             <Text
                                 text="{Suppliers>Phone}"
