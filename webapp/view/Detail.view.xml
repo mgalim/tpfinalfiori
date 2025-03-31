@@ -80,10 +80,22 @@
 
             <Table
                 id="idProductsTable"
-                class="sapUiMediumMarginTop"
+                class="sapUiTinyMarginTop"
                 width="auto"
                 items="{path: 'Products'}"
             >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Title text="{i18n>headerProduct}" />
+                        <ToolbarSpacer />
+                        <Button
+                            id="addButton"
+                            text="{i18n>newProductBtn}"
+                            type="Transparent"
+                            press="onAddProduct"
+                        />
+                    </OverflowToolbar>
+                </headerToolbar>
                 <columns>
                     <Column>
                         <Text text="{i18n>product}" />
@@ -98,7 +110,7 @@
                         <Text text="{i18n>quantityPerUnit}" />
                     </Column>
                     <Column width="100px">
-                        <Text text="{i18n>categories}" />
+                        <Text text="{i18n>category}" />
                     </Column>
                     <Column hAlign="End">
                         <Text text="{i18n>unitPrice}" />

@@ -14,6 +14,8 @@ sap.ui.define(
         oComponent.setModel(
           new JSONModel({
             valueSearch: "",
+            isEdit: false,
+            ProductData: {},
           }),
           "LocalDataModel"
         );

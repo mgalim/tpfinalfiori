@@ -1,23 +1,122 @@
 <core:FragmentDefinition
-    xmlns="sap.m"
     xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m"
 >
     <Dialog
         id="productDialog"
-        title="Hello Dialog"
+        title="{i18n>titleDialog}"
+        icon="sap-icon://activity-items"
+        busy="false"
+        busyIndicatorDelay="0"
     >
         <content>
-            <core:Icon
-                src="sap-icon://hello-world"
-                size="8rem"
-                class="sapUiMediumMargin"
-            />
+            <f:SimpleForm
+                editable="true"
+                id="productForm"
+                layout="ResponsiveGridLayout"
+                labelSpanXL="4"
+                labelSpanL="4"
+                labelSpanM="4"
+                labelSpanS="4"
+                adjustLabelSpan="false"
+                columnsXL="1"
+                columnsL="1"
+                columnsM="1"
+                singleContainerFullSize="false"
+                width="30rem"
+            >
+                <f:content>
+                    <Label
+                        labelFor="ProductName"
+                        text="{i18n>productName}"
+                        required="true"
+                    />
+                    <Input
+                        id="ProductName"
+                        value="{LocalDataModel>/ProductData/ProductName}"
+                        class="sapUiSmallMarginBottom"
+                        editable="{LocalDataModel>/isEdit}"
+                        change="onChangeValidate"
+                    />
+                    <Label
+                        labelFor="UnitsInStock"
+                        text="{i18n>unitsInStock}"
+                        required="true"
+                    />
+                    <Input
+                        id="UnitsInStock"
+                        value="{LocalDataModel>/ProductData/UnitsInStock}"
+                        class="sapUiSmallMarginBottom"
+                        type="Number"
+                        editable="{LocalDataModel>/isEdit}"
+                        change="onChangeValidate"
+                    />
+                    <Label
+                        labelFor="QuantityPerUnit"
+                        text="{i18n>quantityPerUnit}"
+                        required="true"
+                    />
+                    <Input
+                        id="QuantityPerUnit"
+                        value="{LocalDataModel>/ProductData/QuantityPerUnit}"
+                        class="sapUiSmallMarginBottom"
+                        editable="{LocalDataModel>/isEdit}"
+                        change="onChangeValidate"
+                    />
+                    <Label
+                        labelFor="Category"
+                        text="{i18n>category}"
+                        required="true"
+                    />
+                    <ComboBox
+                        id="comboboxID"
+                        items="{path:'/Categories',sorter:{path:'CategoryName'}}"
+                        selectionChange="onSelectionChange"
+                        selectedKey="{LocalDataModel>/ProductData/CategoryID}"
+                        class="sapUiSmallMarginBottom"
+                        editable="{LocalDataModel>/isEdit}"
+                        change="onChangeValidate"
+                    >
+                        <core:Item
+                            key="{CategoryID}"
+                            text="{CategoryID} - {CategoryName}"
+                        />
+                    </ComboBox>
+                    <Label
+                        labelFor="UnitPrice"
+                        text="{i18n>unitPrice}"
+                        required="true"
+                    />
+                    <Input
+                        id="UnitPrice"
+                        type="Number"
+                        value="{
+                        path: 'LocalDataModel>/ProductData/UnitPrice',
+                        type: 'sap.ui.model.type.Float',
+                        formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 }
+    }"
+                        class="sapUiSmallMarginBottom"
+                        editable="{LocalDataModel>/isEdit}"
+                        change="onChangeValidate"
+                    />
+                </f:content>
+            </f:SimpleForm>
         </content>
         <beginButton>
             <Button
-                text="{i18n>closeButtonText}"
-                press=".onCloseDialog"
+                visible="{LocalDataModel>/isEdit}"
+                text="{i18n>newProductBtn}"
+                type="Emphasized"
+                press=".onPressSaveData"
             />
         </beginButton>
+        <endButton>
+            <Button
+                text="{i18n>closeBtn}"
+                press=".onCloseDialog"
+            />
+        </endButton>
     </Dialog>
 </core:FragmentDefinition>
